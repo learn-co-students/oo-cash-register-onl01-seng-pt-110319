@@ -2,34 +2,43 @@ require 'pry'
 
 class CashRegister
 ##  Note that a discount is calculated as a percentage off of the total cash register price (e.g. a discount of 20 means the customer receives 20% off of their total price).
- attr_accessor :total, :discount, :previous_item_total
- 
+
+ attr_accessor :total, :discount, :last_amount
+
   def initialize(discount = 0)
-    @total = total = 0
+    @total = 0
     @discount = discount
-    @previous_item_total = []
+    @items = []
   end
   
   def add_item(title, price, quantity = 1)
-    if quantity > 1
-      quantity_counter = 0
-      while quantity_counter < quantity
-        @previous_item_total << title
-        quantity_counter += 1
-      end
-    else
-      @previous_item_total << title
+    @total += price*quantity
+    quantity.times do
+      # binding.pry
+      self.items << title
     end 
-
-    @total = (price*quantity)
-    @total
-  end 
-  
-  
-  def void_last_transaction
-    
+    @last_amount = price * quantity
   end
   
+  
+  def apply_discount
+    if @discount > 0 
+      @total = @total - (@total * @discount / 100) 
+      "After the discount, the total comes to $#{@total}."
+    else 
+      "There is no discount to apply."
+    end
+  end
+  
+      def items
+      @items
+    end
+    
+    def void_last_transaction
+      #@total = @total - @last_amount
+      @total -= @last_amount
+    end
+    
 end 
 
 
