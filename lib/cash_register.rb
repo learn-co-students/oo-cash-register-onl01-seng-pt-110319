@@ -16,14 +16,10 @@ class CashRegister
     quantity.times do 
       @items << title
     end
-    
-    
-    
   end 
   
   def apply_discount
     if @discount > 0
-      # binding.pry
       @discount = @discount/100.to_f 
       @total = @total - (@total * (@discount))
       "After the discount, the total comes to $#{@total.to_i}."
@@ -40,6 +36,6 @@ class CashRegister
     @total = @total - @last_amount
   end
   
+  binding.pry
 
-  
 end 
