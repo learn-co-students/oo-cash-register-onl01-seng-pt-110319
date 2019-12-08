@@ -1,9 +1,6 @@
 require 'pry'
 
-class CashRegister
-##  Note that a discount is calculated as a percentage off of the total cash register price (e.g. a discount of 20 means the customer receives 20% off of their total price).
-
- attr_accessor :total, :discount, :last_amount
+attr_accessor :total, :discount, :last_amount
 
   def initialize(discount = 0)
     @total = 0
@@ -12,7 +9,7 @@ class CashRegister
   end
   
   def add_item(title, price, quantity = 1)
-    @total += price*quantity
+    @total += price * quantity
     quantity.times do
       # binding.pry
       self.items << title
@@ -30,7 +27,7 @@ class CashRegister
     end
   end
   
-      def items
+    def items
       @items
     end
     
@@ -40,5 +37,3 @@ class CashRegister
     end
     
 end 
-
-
