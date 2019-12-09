@@ -1,3 +1,4 @@
+require 'pry'
 describe 'CashRegister' do
   let(:cash_register) { CashRegister.new }
   let(:cash_register_with_discount) { CashRegister.new(20) }
@@ -78,6 +79,7 @@ describe 'CashRegister' do
     it 'subtracts the last item from the total' do
       cash_register.add_item("apple", 0.99)
       cash_register.add_item("tomato", 1.76)
+      #binding.pry
       cash_register.void_last_transaction
       expect(cash_register.total).to eq(0.99)
     end
@@ -88,4 +90,3 @@ describe 'CashRegister' do
     end
   end
 end
-
